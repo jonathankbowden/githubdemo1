@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>About - Jonathan Bowden</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+        name="description"
+        content="About Jonathan Bowden – designer focused on digital products that make a positive impact."
+    />
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #050816;
+            --bg-alt: #0b1020;
+            --accent: #4f46e5;
+            --accent-soft: rgba(79, 70, 229, 0.12);
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --border: rgba(156, 163, 175, 0.25);
+            --radius-lg: 18px;
+            --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.65);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                "Helvetica Neue", Arial, sans-serif;
+            background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            justify-content: center;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 760px;
+            padding: 24px 20px 60px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: radial-gradient(circle at 30% 10%, #4f46e5, #22c55e 40%, #020617 80%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e5e7eb;
+            font-weight: 600;
+            font-size: 18px;
+            box-shadow: 0 12px 35px rgba(79, 70, 229, 0.7);
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 18px;
+            font-size: 14px;
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        nav a.active {
+            color: var(--text);
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #4f46e5, #22c55e);
+            transition: width 0.2s ease-out;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding-inline: 16px;
+            }
+
+            header {
+                margin-bottom: 28px;
+            }
+        }
+
+        .content-card {
+            padding: 32px 28px;
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at top left, rgba(79, 70, 229, 0.18), transparent 55%),
+                linear-gradient(145deg, #020617, #030712 55%, #020617);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            margin: 0 0 20px;
+            font-size: clamp(28px, 4vw, 36px);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+
+        h1 span {
+            background: linear-gradient(120deg, #e5e7eb, #c4b5fd, #a5b4fc);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .prose {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .prose p {
+            margin: 0 0 16px;
+        }
+
+        .prose p:last-child {
+            margin-bottom: 0;
+        }
+
+        .prose strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(51, 65, 85, 0.6);
+        }
+
+        .section-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--muted);
+            margin: 0 0 14px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .value-item {
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(75, 85, 99, 0.5);
+        }
+
+        .value-item h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0 0 4px;
+        }
+
+        .value-item p {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .timeline-year {
+            flex-shrink: 0;
+            width: 52px;
+            font-size: 12px;
+            color: #a5b4fc;
+            font-weight: 500;
+            padding-top: 2px;
+        }
+
+        .timeline-content h3 {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            margin: 0 0 2px;
+        }
+
+        .timeline-content p {
+            font-size: 13px;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 28px;
+            font-size: 13px;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.15s ease-out;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        footer {
+            margin-top: 32px;
+            font-size: 11px;
+            color: #6b7280;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <a href="index.html" class="logo-mark" aria-label="Home">JB</a>
+            <nav aria-label="Primary">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="index.html#work">Work</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <article class="content-card">
+                <div class="eyebrow">About me</div>
+                <h1>Designer who believes <span>good work should do good</span></h1>
+
+                <div class="prose">
+                    <p>
+                        I'm Jonathan Bowden, a digital designer based in Melbourne. I've spent the past
+                        decade working at the intersection of product strategy, user experience, and
+                        visual design—helping teams build things that are useful, usable, and
+                        quietly considered.
+                    </p>
+                    <p>
+                        My focus is on <strong>digital design for good</strong>: projects that have a
+                        positive impact on people's lives, whether that's tools for education, climate,
+                        health, or public services. I believe thoughtful design can make complex systems
+                        feel simple and help people do their best work.
+                    </p>
+                    <p>
+                        I'm drawn to early-stage problems where the shape of the solution isn't obvious
+                        yet. I like working closely with founders, engineers, and subject-matter experts
+                        to figure out what to build—then making it feel inevitable.
+                    </p>
+                </div>
+
+                <section class="section">
+                    <h2 class="section-title">What I value</h2>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <h3>Clarity over cleverness</h3>
+                            <p>Good design explains itself. I aim for interfaces that feel obvious.</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Ship small, learn fast</h3>
+                            <p>The smallest honest version teaches more than a perfect spec.</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Kindness in details</h3>
+                            <p>Microinteractions, error states, and edge cases deserve care.</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Words matter</h3>
+                            <p>Clear language is a design decision. I write as part of designing.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Background</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="timeline-year">Now</span>
+                            <div class="timeline-content">
+                                <h3>Independent designer</h3>
+                                <p>Working with mission-driven teams and founders</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-year">2019</span>
+                            <div class="timeline-content">
+                                <h3>Lead Product Designer</h3>
+                                <p>Helped scale design practice at a climate-tech startup</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-year">2016</span>
+                            <div class="timeline-content">
+                                <h3>Senior Designer</h3>
+                                <p>Digital agency work across education and public sector</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-year">2013</span>
+                            <div class="timeline-content">
+                                <h3>Started in design</h3>
+                                <p>Freelance web and brand design</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <a href="index.html" class="back-link">
+                    ← Back to home
+                </a>
+            </article>
+        </main>
+
+        <footer>
+            <span>© <span id="year"></span> Jonathan Bowden.</span>
+            <span>Digital design for good.</span>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear().toString();
+    </script>
+</body>
+</html>
