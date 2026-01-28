@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Jonathan Bowden - Digital Design for Good</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+        name="description"
+        content="Jonathan Bowden – digital design for good. Product design, UX, and thoughtful interfaces that make a positive impact."
+    />
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #050816;
+            --bg-alt: #0b1020;
+            --accent: #4f46e5;
+            --accent-soft: rgba(79, 70, 229, 0.12);
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --border: rgba(156, 163, 175, 0.25);
+            --radius-lg: 18px;
+            --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.65);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                "Helvetica Neue", Arial, sans-serif;
+            background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            justify-content: center;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 1080px;
+            padding: 24px 20px 60px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: radial-gradient(circle at 30% 10%, #4f46e5, #22c55e 40%, #020617 80%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e5e7eb;
+            font-weight: 600;
+            font-size: 18px;
+            box-shadow: 0 12px 35px rgba(79, 70, 229, 0.7);
+        }
+
+        nav {
+            display: flex;
+            gap: 18px;
+            font-size: 14px;
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #4f46e5, #22c55e);
+            transition: width 0.2s ease-out;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            gap: 28px;
+        }
+
+        @media (max-width: 860px) {
+            main {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            header {
+                flex-direction: row;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding-inline: 16px;
+            }
+
+            header {
+                margin-bottom: 28px;
+            }
+
+            main {
+                gap: 22px;
+            }
+        }
+
+        .hero {
+            padding: 26px 26px 28px;
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at top left, rgba(79, 70, 229, 0.28), transparent 55%),
+                linear-gradient(145deg, #020617, #030712 55%, #020617);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
+        }
+
+        h1 {
+            margin: 16px 0 10px;
+            font-size: clamp(30px, 4vw, 40px);
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+        }
+
+        h1 span {
+            background: linear-gradient(120deg, #e5e7eb, #c4b5fd, #a5b4fc);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .tagline {
+            color: var(--muted);
+            font-size: 14px;
+            max-width: 32rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .meta-pill {
+            border-radius: 999px;
+            padding: 6px 11px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(75, 85, 99, 0.65);
+            font-size: 11px;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .meta-pill strong {
+            color: #e5e7eb;
+            font-weight: 500;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .button-primary,
+        .button-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 999px;
+            border: 0;
+            padding: 9px 18px;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.12s ease-out, box-shadow 0.12s ease-out,
+                background 0.12s ease-out, border-color 0.12s ease-out;
+        }
+
+        .button-primary {
+            background: linear-gradient(120deg, #4f46e5, #22c55e);
+            color: #f9fafb;
+            box-shadow: 0 12px 30px rgba(79, 70, 229, 0.55);
+        }
+
+        .button-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 38px rgba(79, 70, 229, 0.7);
+        }
+
+        .button-secondary {
+            background: rgba(15, 23, 42, 0.9);
+            color: var(--muted);
+            border: 1px solid rgba(75, 85, 99, 0.75);
+        }
+
+        .button-secondary:hover {
+            background: rgba(15, 23, 42, 1);
+            border-color: rgba(148, 163, 184, 0.9);
+            transform: translateY(-1px);
+        }
+
+        .arrow {
+            font-size: 14px;
+        }
+
+        .side {
+            display: grid;
+            gap: 14px;
+        }
+
+        .card {
+            padding: 18px 18px 16px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(145deg, #030712, #020617);
+            border: 1px solid rgba(51, 65, 85, 0.9);
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--muted);
+        }
+
+        .card-pill {
+            padding: 3px 9px;
+            border-radius: 999px;
+            font-size: 11px;
+            border: 1px solid rgba(79, 70, 229, 0.6);
+            color: #c4b5fd;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .card-body {
+            font-size: 13px;
+            color: #e5e7eb;
+            line-height: 1.5;
+        }
+
+        .chip-row {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .chip {
+            font-size: 11px;
+            border-radius: 999px;
+            padding: 4px 9px;
+            border: 1px solid rgba(75, 85, 99, 0.75);
+            color: var(--muted);
+        }
+
+        .contact {
+            margin-top: 4px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .contact a {
+            color: #a5b4fc;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 26px;
+            font-size: 11px;
+            color: #6b7280;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div class="logo-mark">JB</div>
+            <nav aria-label="Primary">
+                <a href="#about">About</a>
+                <a href="#work">Selected work</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero" aria-labelledby="hero-title">
+                <div class="eyebrow">
+                    <span class="pulse-dot" aria-hidden="true"></span>
+                    Digital Design for Good
+                </div>
+                <h1 id="hero-title">
+                    Jonathan Bowden<br />
+                    <span>Digital Design for Good</span>
+                </h1>
+                <p class="tagline">
+                    I design calm, thoughtful digital products that help people do their best
+                    work—without shouting for attention. Interfaces that feel obvious, kind,
+                    and quietly opinionated.
+                </p>
+
+                <div class="meta">
+                    <div class="meta-pill">
+                        <strong>Focus</strong>
+                        <span>Product &amp; Interaction Design</span>
+                    </div>
+                    <div class="meta-pill">
+                        <strong>Working with</strong>
+                        <span>mission‑driven teams &amp; founders</span>
+                    </div>
+                    <div class="meta-pill">
+                        <strong>Based in</strong>
+                        <span>Melbourne · Remote‑friendly</span>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a class="button-primary" href="#contact">
+                        Let’s work together
+                        <span class="arrow">↗</span>
+                    </a>
+                    <a class="button-secondary" href="#work">
+                        View selected work
+                    </a>
+                </div>
+            </section>
+
+            <aside class="side">
+                <section id="about" class="card" aria-labelledby="about-title">
+                    <div class="card-header">
+                        <h2 id="about-title" class="card-title">About</h2>
+                        <span class="card-pill">Designer · Builder</span>
+                    </div>
+                    <p class="card-body">
+                        I sit at the overlap of product strategy, UX, and visual design.
+                        I like clear language, practical constraints, and shipping the smallest
+                        honest version that still feels considered.
+                    </p>
+                    <div class="chip-row" aria-label="Capabilities">
+                        <span class="chip">Product &amp; UX strategy</span>
+                        <span class="chip">Interface &amp; visual design</span>
+                        <span class="chip">Design systems</span>
+                        <span class="chip">Prototyping</span>
+                    </div>
+                </section>
+
+                <section id="work" class="card" aria-labelledby="work-title">
+                    <div class="card-header">
+                        <h2 id="work-title" class="card-title">Selected work</h2>
+                        <span class="card-pill">In brief</span>
+                    </div>
+                    <p class="card-body">
+                        I’ve helped early‑stage teams and established organisations design tools
+                        for climate, education, and public services—from first concept through to
+                        production handoff.
+                    </p>
+                    <div class="chip-row" aria-label="Example project types">
+                        <span class="chip">Product dashboards</span>
+                        <span class="chip">Design for nonprofits</span>
+                        <span class="chip">Mobile apps</span>
+                        <span class="chip">Design audits</span>
+                    </div>
+                </section>
+
+                <section id="contact" class="card" aria-labelledby="contact-title">
+                    <div class="card-header">
+                        <h2 id="contact-title" class="card-title">Contact</h2>
+                        <span class="card-pill">Open to new work</span>
+                    </div>
+                    <p class="card-body">
+                        If you’re working on something useful, kind, or quietly ambitious,
+                        I’d love to hear about it.
+                    </p>
+                    <p class="contact">
+                        Email:
+                        <a href="mailto:hello@jonathanbowden.com">
+                            hello@jonathanbowden.com
+                        </a>
+                        <br />
+                        LinkedIn:
+                        <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+                            linkedin.com/in/jonathanbowden
+                        </a>
+                    </p>
+                </section>
+            </aside>
+        </main>
+
+        <footer>
+            <span>© <span id="year"></span> Jonathan Bowden.</span>
+            <span>Digital design for good.</span>
+        </footer>
+    </div>
+
+    <script>
+        // Lightweight enhancement for current year
+        document.getElementById("year").textContent =
+            new Date().getFullYear().toString();
+    </script>
+</body>
+</html>
